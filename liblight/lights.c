@@ -42,7 +42,7 @@ static struct light_state_t g_battery;
 static int g_attention = 0;
 
 char const*const RED_LED_FILE
-        = "/sys/class/leds/red/brightness";
+        = "/sys/class/leds/nubia_led/brightness";
 
 char const*const GREEN_LED_FILE
         = "/sys/class/leds/green/brightness";

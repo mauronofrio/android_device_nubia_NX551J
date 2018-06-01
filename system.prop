@@ -1,9 +1,6 @@
 #
-# system.prop for msm8953
+# system.prop for NX549J
 #
-
-# Art
-ro.sys.fw.dex2oat_thread_count=4
 
 # Audio
 af.fast_track_multiplier=2
@@ -15,7 +12,7 @@ audio.offload.min.duration.secs=30
 audio.offload.multiple.enabled=false
 audio.offload.pcm.16bit.enable=true
 audio.offload.pcm.24bit.enable=true
-audio.offload.track.enable=false
+audio.offload.track.enable=true
 audio.offload.video=true
 audio.parser.ip.buffer.size=0
 audio.playback.mch.downsample=true
@@ -23,9 +20,9 @@ audio.pp.asphere.enabled=false
 audio.safx.pbe.enabled=true
 audio_hal.period_size=192
 persist.audio.dirac.speaker=true
-persist.audio.fluence.speaker=false
+persist.audio.fluence.speaker=true
 persist.audio.fluence.voicecall=true
-persist.audio.fluence.voicerec=false
+persist.audio.fluence.voicerec=true
 persist.speaker.prot.enable=false
 ro.qc.sdk.audio.fluencetype=fluence
 ro.qc.sdk.audio.ssr=false
@@ -37,6 +34,7 @@ voice.conc.fallbackpath=deep-buffer
 voice.playback.conc.disabled=true
 voice.record.conc.disabled=false
 voice.voip.conc.disabled=true
+flac.sw.decoder.24bit.support=true
 
 # Bluetooth
 bluetooth.hfp.client=1
@@ -54,8 +52,7 @@ ro.qualcomm.bt.hci_transport=smd
 
 # Camera
 camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.tencent.mm,com.google.android.GoogleCamera
-#media.camera.ts.monotonic=0
-media.camera.ts.monotonic=1
+media.camera.ts.monotonic=0
 vidc.dec.downscalar_height=1088
 vidc.dec.downscalar_width=1920
 vidc.enc.dcvs.extra-buff-count=2
@@ -84,8 +81,16 @@ ro.sf.lcd_density=480
 # Fingerprint
 persist.qfp=false
 
+# Fm
+ro.fm.transmitter=false
+
 # FRP
 ro.frp.pst=/dev/block/bootdevice/by-name/config
+
+# GPS
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
+ro.gps.agps_provider=1
 
 # Media
 av.debug.disable.pers.cache=1
@@ -143,6 +148,7 @@ telephony.lteOnCdmaDevice=1,1
 ro.vendor.extension_library=libqti-perfd-client.so
 ro.vendor.gt_library=libqti-gt.so
 ro.vendor.at_library=libqti-at.so
+ro.sys.fw.dex2oat_thread_count=4
 
 # QMI
 persist.data.qmi.adb_logmask=0

@@ -27,6 +27,27 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #
+
+# Update USB serial number from persist storage if present, if not update
+# with value passed from kernel command line, if none of these values are
+# set then use the default value. This order is needed as for devices which
+# do not have unique serial number.
+# User needs to set unique usb serial number to persist.usb.serialno
+#
+serialno=`getprop persist.usb.serialno`
+case "$serialno" in
+    "")
+    serialnum=`getprop ro.serialno`
+    case "$serialnum" in
+        "");; #Do nothing, use default serial number
+        *)
+        echo "$serialnum" > /sys/class/android_usb/android0/iSerial
+    esac
+    ;;
+    *)
+    echo "$serialno" > /sys/class/android_usb/android0/iSerial
+esac
+
 chown -h root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
 chmod -h 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
 
@@ -76,6 +97,22 @@ case "$usbcurrentlimit" in
 esac
 
 #
+# ZTEMT: Allow USB enumeration with or without debug port
+#
+
+if [ -f "/persist/property/persist.sys.usb.factory" ]; then
+	cat /persist/property/persist.sys.usb.factory | while read line
+	do
+		setprop persist.sys.usb.factory $line
+	done
+else 
+	mkdir -p /persist/property
+	touch /persist/property/persist.sys.usb.factory
+	chown -R system:system /persist/property
+	setprop persist.sys.usb.factory 1
+fi
+
+#
 # Check ESOC for external MDM
 #
 # Note: currently only a single MDM is supported
@@ -122,56 +159,34 @@ fi
 baseband=`getprop ro.baseband`
 echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
 usb_config=`getprop persist.sys.usb.config`
+build_type=`getprop ro.build.type`
+if [ -f "/sdcard/usb_config.txt" ];then
+	cat /sdcard/usb_config.txt | while read configline
+	do
+		setprop persist.sys.usb.config $configline
+	done
+else
 case "$usb_config" in
-    "" | "adb") #USB persist config not set, select default configuration
-      case "$esoc_link" in
-          "PCIe")
-              setprop persist.sys.usb.config diag,diag_mdm,serial_cdev,rmnet_qti_ether,mass_storage,adb
-          ;;
-          *)
-	  case "$soc_hwplatform" in
-	      "Dragon")
-	          setprop persist.sys.usb.config diag,adb
-	      ;;
-              *)
-	      case "$target" in
-                  "msm8916")
-		      setprop persist.sys.usb.config diag,serial_smd,rmnet_bam,adb
-		  ;;
-	          "msm8994" | "msm8992")
-	              setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_ipa,mass_storage,adb
-		  ;;
-	          "msm8996")
-	              setprop persist.sys.usb.config diag,serial_cdev,serial_tty,rmnet_ipa,mass_storage,adb
-		  ;;
-	          "msm8909")
-		      setprop persist.sys.usb.config diag,serial_smd,rmnet_qti_bam,adb
-		  ;;
-	          "msm8937")
-			case "$soc_id" in
-				"313")
-				   setprop persist.sys.usb.config diag,serial_smd,rmnet_ipa,adb
-				;;
-				*)
-				   setprop persist.sys.usb.config diag,serial_smd,rmnet_qti_bam,adb
-				;;
-			esac
-		  ;;
-	          "msm8952" | "msm8953")
-		      setprop persist.sys.usb.config diag,serial_smd,rmnet_ipa,adb
-		  ;;
-	          *)
-		      setprop persist.sys.usb.config diag,adb
-		  ;;
-              esac
-	      ;;
-	  esac
-	  ;;
-      esac
+      "nubia,adb"|"nubia")
+       # do nothing
       ;;
-  * ) ;; #USB persist config exists, do nothing
-esac
-
+       *)
+          case "$build_type" in
+              "eng")
+                 setprop persist.sys.usb.config nubia,adb
+              ;;
+               *)
+                 setprop persist.sys.usb.config nubia
+              ;;
+         esac
+      ;;
+esac       
+fi
+#
+# Add support for exposing lun0 as cdrom in mass-storage
+#
+cdromname="/system/driver.iso"
+echo $cdromname > /sys/class/android_usb/android0/f_mass_storage/lun/file
 #
 # Do target specific things
 #
@@ -249,22 +264,6 @@ case "$baseband" in
     ;;
 esac
 
-#
-# Add support for exposing lun0 as cdrom in mass-storage
-#
-cdromname="/system/etc/cdrom_install.iso"
-platformver=`cat /sys/devices/soc0/hw_platform`
-case "$target" in
-	"msm8226" | "msm8610" | "msm8916")
-		case $platformver in
-			"QRD")
-				echo "mounting usbcdrom lun"
-				echo $cdromname > /sys/class/android_usb/android0/f_mass_storage/rom/file
-				chmod 0444 /sys/class/android_usb/android0/f_mass_storage/rom/file
-				;;
-		esac
-		;;
-esac
 
 #
 # Initialize RNDIS Diag option. If unset, set it to 'none'.
@@ -288,3 +287,5 @@ case "$soc_id" in
 		setprop sys.usb.rps_mask 40
 	;;
 esac
+# open  power off alarm function
+setprop sys.zte.poalarm.support 1
