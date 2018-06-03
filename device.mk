@@ -162,6 +162,7 @@ PRODUCT_PACKAGES += \
     izat.conf \
     lowi.conf \
     sap.conf \
+	xtwifi.conf \
     gps.msm8953
 
 PRODUCT_BOOT_JARS += \
@@ -171,7 +172,11 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml
-
+	
+# IRQ
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
+	
 # IPC Router
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
@@ -275,6 +280,10 @@ PRODUCT_PACKAGES += \
     hostapd \
     fstman.ini \
     wpa_supplicant \
+	hostapd.accept \
+	hostapd.deny \
+	WCNSS_cfg.dat \
+	WCNSS_qcom_cfg.ini \
     wpa_supplicant.conf
 
 PRODUCT_PACKAGES += \

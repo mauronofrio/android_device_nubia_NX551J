@@ -198,7 +198,7 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.qcom
 USE_SENSOR_MULTI_HAL := true
 
 # Tap2Wake
-TARGET_TAP_TO_WAKE_NODE := "/sys/class/input/input1/wake_gesture"
+TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc/7af5000.i2c/i2c-5/5-0020/input/input1/wake_gesture"
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
@@ -214,6 +214,8 @@ BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
+WIFI_DRIVER_MODULE_NAME := "wlan"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/pronto/pronto_wlan.ko"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
