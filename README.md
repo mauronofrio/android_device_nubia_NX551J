@@ -11,13 +11,13 @@
 | Shipped Android Version | 6.0.1                             |
 | Storage                 | 64/128 GB                         |
 | MicroSD                 | Up to 200 GB                      |
-| Battery                 | 3650 mAh (non-removable)          |
-| Dimensions              | 146 x 72 x 7.6 mm                 |
-| Display                 | 1920x1080 pixels, 5.2" (424 PPI)  |
-| Rear Camera             | 23 MP (Sony IMX318), LED flash    |
-| Front Camera            | 13 MP (Sony IMX258)               |
-| Release Date            | October 2016                      |
+| Battery                 | 3630 mAh (non-removable)          |
+| Dimensions              | 154.5 x 75.9 x 7 mm               |
+| Display                 | 1920x1080 pixels, 5.5" (401 PPI)  |
+| Rear Camera             | Dual 13 MP, LED flash		      |
+| Front Camera            | 16 MP                             |
+| Release Date            | March 2017                        |
 
 ## Device Picture
 
-![nubia Z11 miniS](http://oss.nubia.com/productgallery/picture/Z11-miniS-nubia-smartphone-1.jpg "nubia Z11 miniS")
+![nubia M2](http://oss.nubia.com/presscenter/photo/picture/nubia-m2-nubia-smartphone-gallery-1.jpg "nubia M2")
