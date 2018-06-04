@@ -45,10 +45,10 @@ char const*const RED_LED_FILE
         = "/sys/class/leds/nubia_led/brightness";
 
 char const*const GREEN_LED_FILE
-        = "/sys/class/leds/green/brightness";
+        = "/sys/class/leds/nubia_led/brightness";
 
 char const*const BLUE_LED_FILE
-        = "/sys/class/leds/blue/brightness";
+        = "/sys/class/leds/nubia_led/brightness";
 
 char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
@@ -57,13 +57,13 @@ char const*const BUTTON_FILE
         = "/sys/class/leds/button-backlight/brightness";
 
 char const*const RED_BLINK_FILE
-        = "/sys/class/leds/red/blink";
+        = "/sys/class/leds/nubia_led/blink_mode";
 
 char const*const GREEN_BLINK_FILE
-        = "/sys/class/leds/green/blink";
+        = "/sys/class/leds/nubia_led/blink_mode";
 
 char const*const BLUE_BLINK_FILE
-        = "/sys/class/leds/blue/blink";
+        = "/sys/class/leds/nubia_led/blink_mode";
 
 /**
  * device methods
