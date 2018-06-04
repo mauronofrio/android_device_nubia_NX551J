@@ -115,6 +115,14 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     Snap
+	
+PRODUCT_PACKAGES += \
+    s5j318_chromatix.xml \
+    imx258_chromatix.xml \
+    msm8953_camera.xml
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.HAL3.enabled=1
 
 # Display
 PRODUCT_PACKAGES += \
@@ -138,7 +146,6 @@ PRODUCT_BOOT_JARS += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprint.default \
-    fingerprint.msm8953 \
     fingerprintd
 
 # For android_filesystem_config.h
@@ -265,7 +272,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcnefeatureconfig \
     librmnetctl \
-    libxml2
+    libxml2 \
+    libprotobuf-cpp-full
+	
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.extension_library=libqti-perfd-client.so
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.radio.apm_sim_not_pwdn=1 \
+    persist.radio.sib16_support=1 \
+    ro.telephony.ril.config=simactivation
 
 # Sensor
 PRODUCT_PACKAGES += \
