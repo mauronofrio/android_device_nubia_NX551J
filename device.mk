@@ -293,7 +293,13 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine.conf
+    $(LOCAL_PATH)/configs/thermal-engine.conf:system/etc/thermal-engine.conf \
+    $(LOCAL_PATH)/configs/tp/thermal-mode-00-01.conf:system/etc/.tp/.thermal-mode-00-01.conf \
+    $(LOCAL_PATH)/configs/tp/thermal-mode-00-02.conf:system/etc/.tp/.thermal-mode-00-02.conf \
+    $(LOCAL_PATH)/configs/tp/thermal-mode-01-01.conf:system/etc/.tp/.thermal-mode-01-01.conf \
+    $(LOCAL_PATH)/configs/tp/thermal-mode-01-02.conf:system/etc/.tp/.thermal-mode-01-02.conf \
+    $(LOCAL_PATH)/configs/tp/thermal-mode-01-02.conf:system/etc/.tp/.thermal-mode-02-01.conf \
+    $(LOCAL_PATH)/configs/tp/thermal-mode-01-02.conf:system/etc/.tp/.thermal-mode-02-02.conf \
 
 # Wifi
 PRODUCT_PACKAGES += \
