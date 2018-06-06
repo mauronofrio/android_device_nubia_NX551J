@@ -61,14 +61,25 @@ LOCAL_SRC_FILES := IPACM_Main.cpp \
                 IPACM_Log.cpp
 
 LOCAL_MODULE := ipacm
-LOCAL_CLANG := false
+LOCAL_CLANG := true
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SHARED_LIBRARIES := libipanat
 LOCAL_SHARED_LIBRARIES += libxml2
 LOCAL_SHARED_LIBRARIES += libnfnetlink
 LOCAL_SHARED_LIBRARIES += libnetfilter_conntrack
-LOCAL_SHARED_LIBRARIES += libdhcpcd
+LOCAL_SHARED_LIBRARIES += libhwbinder \
+                libhidlbase \
+                libhidltransport \
+                liblog \
+                libcutils \
+                libdl \
+                libbase \
+                libutils \
+                libhardware_legacy \
+                libhardware \
+                android.hardware.tetheroffload.config@1.0 \
+                android.hardware.tetheroffload.control@1.0
 include $(BUILD_EXECUTABLE)
 
 ################################################################################
