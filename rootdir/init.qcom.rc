@@ -323,6 +323,10 @@ on boot
 	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   grade_parameter  0660    input   system
 	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   outn             0660    input   system
 	
+	+# touchscreen
+	/sys/devices/soc/7af5000.i2c/i2c-5/5-0020/input/input1     wake_gesture     0644    system  system
+	/sys/devices/soc/7af5000.i2c/i2c-5/5-0020/input/input1     0dbutton         0644    system  system
+	
 
 # msm specific files that need to be created on /data
 on post-fs-data

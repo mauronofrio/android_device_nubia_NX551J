@@ -120,8 +120,10 @@ BOARD_FORCE_OPEN_TORCH := true
 BOARD_HAVE_NUBIA_GOODIX_FP := true
 
 # CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
++BOARD_USES_CYANOGEN_HARDWARE := true
++BOARD_HARDWARE_CLASS += \
++    hardware/cyanogen/cmhw \
++    $(DEVICE_PATH)/cmhw
 
 # CNE / DPM
 BOARD_USES_QCNE := true
@@ -201,7 +203,7 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.qcom
 USE_SENSOR_MULTI_HAL := true
 
 # Tap2Wake
-TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc/7af5000.i2c/i2c-5/5-0020/input/input1/wake_gesture"
+TARGET_TAP_TO_WAKE_NODE := "/sys/class/input/input1/wake_gesture"
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
