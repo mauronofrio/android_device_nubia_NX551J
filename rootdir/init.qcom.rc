@@ -316,6 +316,13 @@ on boot
 	chown system system /dev/goodix_fp
 	chmod 0644 /dev/goodix_fp
 	
+	# nubia led
+	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   blink_mode       0660    input   system
+	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   brightness       0660    input   system
+	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   fade_parameter   0660    input   system
+	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   grade_parameter  0660    input   system
+	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   outn             0660    input   system
+	
 
 # msm specific files that need to be created on /data
 on post-fs-data

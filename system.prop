@@ -53,6 +53,8 @@ vidc.enc.disable_bframes=1
 persist.camera.imglib.fddsp=1
 persist.camera.llc=1
 persist.camera.llnoise=1
+persist.camera.isp.turbo=1
+persist.camera.vdbea.switch=1
 
 # CNE
 persist.cne.feature=1
