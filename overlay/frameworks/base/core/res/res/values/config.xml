@@ -190,7 +190,7 @@
          if the sensor HAL correctly handles the proximity sensor as a wake-up source.
          Otherwise, the device may fail to wake out of suspend reliably.
          The default is false. -->
-    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+    <bool name="config_suspendWhenScreenOffDueToProximity">false</bool>
 
     <!-- Indicate whether closing the lid causes the device to go to sleep and opening
          it causes the device to wake up.
@@ -333,5 +333,7 @@
          don't support RIL_REQUEST_GET_RADIO_CAPABILITY
          format is UMTS|LTE|... -->
     <string translatable="false" name="config_radio_access_family">GSM | WCDMA | LTE | CDMA | EVDO</string>
+	<bool name="config_device_volte_available">true</bool>
+	<bool name="config_carrier_volte_available">true</bool>
 
 </resources>
