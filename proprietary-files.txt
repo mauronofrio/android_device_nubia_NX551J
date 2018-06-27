@@ -144,7 +144,6 @@ etc/xtwifi.conf
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
 -framework/qti-telephony-common.jar
--framework/soter_fingerprint.jar
 -framework/tcmclient.jar
 lib/hw/camera.msm8953.so
 lib/libalColorMono.so
