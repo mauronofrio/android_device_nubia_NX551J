@@ -149,8 +149,8 @@ PRODUCT_PACKAGES += \
     fs_config_files
 
 # FPGesture
-PRODUCT_PACKAGES += \
-    FPGesture
+#PRODUCT_PACKAGES += \
+#    FPGesture
 
 # KeyHandler
 PRODUCT_PACKAGES += \
