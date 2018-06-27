@@ -174,7 +174,6 @@ lib/libnubia_runtime.so
 lib/libnubia_servers.so
 lib/libnubia_trajectory.so
 lib/libnubiajpeg.so
-lib/libnubiajpeg_temp.so
 lib/libqomx_core.so
 lib/libteeclientjni.so
 lib/libtinycompress.so
@@ -186,7 +185,6 @@ lib64/hw/gxfingerprint.default.so
 lib64/libaudioroute.so
 lib64/libfmjni.so
 lib64/libfp_client.so
-lib64/libfpnav.so
 lib64/libfpservice.so
 lib64/libimscamera_jni.so
 lib64/libimsmedia_jni.so
@@ -202,7 +200,6 @@ lib64/sensors.oem.so
 -priv-app/dpmserviceapp/dpmserviceapp.apk
 -priv-app/ims/ims.apk
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
-usr/keylayout/nubia_synaptics_dsx.kl
 usr/keylayout/synaptics_dsx.kl
 usr/keylayout/synaptics_dsxv26.kl
 usr/keylayout/synaptics_rmi4_i2c.kl
