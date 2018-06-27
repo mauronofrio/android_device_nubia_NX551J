@@ -189,6 +189,17 @@ on boot
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 	
 	#Imported from stock init.rc
+	# ADD BY NUBIA FOR BREATHLED
+	chown system system /sys/class/leds/nubia_led/outn
+	chown system system /sys/class/leds/nubia_led/grade_parameter
+	chown system system /sys/class/leds/nubia_led/fade_parameter
+	chown system system /sys/class/leds/nubia_led/blink_mode
+#ADD END BY NUBIA FOR BREATHLED
+    #add for bootsound property
+        mkdir /persist/bootsoundproperty 0777 system system
+        #chown system system /persist/bootsoundproperty
+        #chmod 0777 /persist/bootsoundproperty
+        #end
 	# ADDED BY ZTEMT
 # add the sensor sysfs permission
 
@@ -311,10 +322,17 @@ on boot
 	chown system system /persist/sensors/rgbc_cfg
 	chmod 0644 /persist/sensors/rgb_color_cfg
 	chmod 0644 /prtsist/sensors/rgbc_cfg
+# ADDED BY ZTEMT ZhuBing END
+
+#ti drv2605 vibrator
+    chmod 0660 /dev/drv2605
+    chown system system /dev/drv2605
+    chown system system /sys/class/timed_output/vibrator_drv2605/enable
 	
 	# ADDED BY ZTEMT lijun START for goodix
 	chown system system /dev/goodix_fp
 	chmod 0644 /dev/goodix_fp
+	# ADDED BY ZTEMT lijun END
 	
 	# nubia led
 	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   blink_mode       0660    input   system
@@ -327,6 +345,12 @@ on boot
 	/sys/devices/soc/7af5000.i2c/i2c-5/5-0020/input/input1     wake_gesture     0644    system  system
 	/sys/devices/soc/7af5000.i2c/i2c-5/5-0020/input/input1     0dbutton         0644    system  system
 	
+	
+    chown media media /sys/kernel/flash_bkl/brightness #ZTEMT:added by congshan
+    chown media media /sys/kernel/flash_bkl/bkl_recov #ZTEMT:added by congshan
+	chown system system /sys/class/leds/red/blink
+	chown system system /sys/class/leds/green/blink
+	chown system system /sys/class/leds/blue/blink
 
 # msm specific files that need to be created on /data
 on post-fs-data
