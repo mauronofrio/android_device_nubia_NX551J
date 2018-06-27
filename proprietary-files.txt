@@ -1557,7 +1557,7 @@ vendor/lib/libsurround_3mic_proc.so
 vendor/lib/libsystem_health_mon.so
 vendor/lib/libtar.so
 vendor/lib/libthermalclient.so
-vendor/lib/libtime_genoff.so
+-vendor/lib/libtime_genoff.so
 vendor/lib/libTimeService.so
 vendor/lib/libtm_interface.so
 vendor/lib/libtrueportrait.so
@@ -1873,7 +1873,7 @@ vendor/lib64/libSubSystemShutdown.so
 vendor/lib64/libsystem_health_mon.so
 vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
-vendor/lib64/libtime_genoff.so
+-vendor/lib64/libtime_genoff.so
 vendor/lib64/libTimeService.so
 vendor/lib64/libtzdrmgenprov.so
 vendor/lib64/libulp2.so
