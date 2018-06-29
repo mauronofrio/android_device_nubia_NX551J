@@ -340,11 +340,7 @@ on boot
 	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   fade_parameter   0660    input   system
 	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   grade_parameter  0660    input   system
 	/sys/devices/soc/78b6000.i2c/i2c-2/2-0045/leds/nubia_led   outn             0660    input   system
-	
-	+# touchscreen
-	/sys/devices/soc/7af5000.i2c/i2c-5/5-0020/input/input1     wake_gesture     0644    system  system
-	/sys/devices/soc/7af5000.i2c/i2c-5/5-0020/input/input1     0dbutton         0644    system  system
-	
+
 	
     chown media media /sys/kernel/flash_bkl/brightness #ZTEMT:added by congshan
     chown media media /sys/kernel/flash_bkl/bkl_recov #ZTEMT:added by congshan
@@ -352,8 +348,49 @@ on boot
 	chown system system /sys/class/leds/green/blink
 	chown system system /sys/class/leds/blue/blink
 
+    #nubia, tp&lcd node start
+    mkdir /data/tp 0775 system system
+    symlink /sys/class/input/input1/ic_ver /data/tp/ic_ver
+    symlink /sys/class/input/input1/reset /data/tp/reset
+    symlink /sys/class/input/input1/f54/ic_detect /data/tp/ic_detect
+    symlink /sys/class/input/input1/start_update /data/tp/start_update
+    chown system system /sys/class/input/input1/wake_gesture
+    symlink /sys/class/input/input1/wake_gesture /data/tp/easy_wakeup_gesture
+    chown system system /sys/class/input/input1/palm_sleep
+    symlink /sys/class/input/input1/palm_sleep /data/tp/easy_sleep_palm
+    write /sys/class/input/input1/start_update 1
+    chown system system /sys/kernel/lcd_enhance/colortmp
+    chown system system /sys/kernel/lcd_enhance/cabc
+    chown system system /sys/kernel/lcd_enhance/saturation
+    #nubia, tp&lcd node end
+
+	
+	# touchscreen
+	/sys/class/input/input1/     wake_gesture     0644    system  system
+	/sys/class/input/input1/     0dbutton         0644    system  system
+
+	#ZTEMT:guoqifan add for af infinity calibration -----begin
+	mkdir /persist/camera 0755 system system
+    chown system system /persist/camera
+    chmod 0751 /persist/camera
+
+    chown system system /persist/camera/camera_focus_pos.conf
+    chmod 0644 /persist/camera/camera_focus_pos.conf
+	#ZTEMT:guoqifan add for af infinity calibration -----end
+
+    #ZTEMT:fengxun add for eeprom calibration ------start
+    chmod 0775 /data/misc/camera
+    #ZTEMT:fengxun add for eeprom calibration ------end
+
 # msm specific files that need to be created on /data
 on post-fs-data
+    # Sensors
+    chmod 0775 /persist/sensors
+    chmod 0664 /persist/sensors/sensors_settings
+    chown system root /persist/sensors/sensors_settings
+    mkdir /data/misc/sensors
+    chmod 0775 /data/misc/sensors
+
     #Create directories for Fingerprint
     mkdir /data/misc/stargate 0770 system system
     mkdir /data/misc/stargate/bg_estimation 0770 system system
@@ -508,9 +545,6 @@ on post-fs-data
     #Create SWAP related dirs
     mkdir /data/system/swap 0770 root system
     chmod 2770 /data/system/swap
-	
-	#imported from stock init.rc
-	
 
 service perfd /system/vendor/bin/perfd
    class main
