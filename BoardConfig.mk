@@ -109,6 +109,7 @@ BLUETOOTH_HCI_USE_MCT := true
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
+BOARD_QTI_CAMERA_32BIT_ONLY := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 # Charger
@@ -203,7 +204,7 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.qcom
 USE_SENSOR_MULTI_HAL := true
 
 # Tap2Wake
-TARGET_TAP_TO_WAKE_NODE := "/sys/class/input/input1/wake_gesture"
+TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
