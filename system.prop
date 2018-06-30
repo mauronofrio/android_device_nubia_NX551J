@@ -1,107 +1,101 @@
-#
-# system.prop for NX549J
-#
+
 
 # Audio
+voice.playback.conc.disabled=true
+voice.record.conc.disabled=false
+voice.voip.conc.disabled=true
+voice.conc.fallbackpath=deep-buffer
+audio.parser.ip.buffer.size=0
 ro.qc.sdk.audio.ssr=false
 ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=false
-tunnel.audio.encode=false
-media.aac_51_output_enabled=true
-audio.offload.buffer.size.kb=32
+tunnel.audio.encode = false
+audio.offload.buffer.size.kb=64
+audio.offload.min.duration.secs=30
 audio.offload.video=true
 audio.offload.pcm.16bit.enable=true
 audio.offload.pcm.24bit.enable=true
 audio.offload.track.enable=false
 audio.deep_buffer.media=true
+media.stagefright.audio.sink=280
+audio.playback.mch.downsample=true
 use.voice.path.for.pcm.voip=true
-audio.offload.multiaac.enable=true
+use.qti.sw.alac.decoder=true
+use.qti.sw.ape.decoder=true
 audio.offload.gapless.enabled=true
-audio.safx.pbe.enabled=true
-audio.parser.ip.buffer.size=262144
-audio.dolby.ds2.enabled=true
-audio.dolby.ds2.hardbypass=true
-audio.offload.passthrough=false
 audio.offload.multiple.enabled=false
-dmid=3067269873
-audio.ds1.metainfo.key=273
+audio.safx.pbe.enabled=true
+audio.pp.asphere.enabled=false
+af.fast_track_multiplier=2
+audio_hal.period_size=192
+drm.service.enabled=true
+audio.effect.name=srs
+audio.dolby.ds2.enabled=true
+qcom.hw.aac.encoder=true
+persist.speaker.prot.enable=false
+audio.offload.multiaac.enable=true
+audio.dolby.ds2.hardbypass=true
+flac.sw.decoder.24bit.support=true
 
 # Bluetooth
 bluetooth.hfp.client=1
-ro.bluetooth.dun=true
-ro.bluetooth.hfp.ver=1.7
-ro.bluetooth.sap=true
-ro.qualcomm.bluetooth.ftp=true
-ro.qualcomm.bluetooth.hfp=true
-ro.qualcomm.bluetooth.hsp=true
-ro.qualcomm.bluetooth.map=true
-ro.qualcomm.bluetooth.nap=true
-ro.qualcomm.bluetooth.opp=true
-ro.qualcomm.bluetooth.pbap=true
-ro.qualcomm.bt.hci_transport=smd
+qcom.bluetooth.soc=smd
 
 # Camera
-camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.tencent.mm,com.google.android.GoogleCamera
-media.camera.ts.monotonic=0
-vidc.dec.downscalar_height=1088
-vidc.dec.downscalar_width=1920
-vidc.enc.dcvs.extra-buff-count=2
-vidc.enc.disable_bframes=1
-# Camera
-persist.camera.imglib.fddsp=1
-persist.camera.llc=1
-persist.camera.llnoise=1
-persist.camera.isp.turbo=1
+camera.hal1.packagelist=com.skype.raider,com.google.android.talk
+camera.lowpower.record.enable=1
+camera.display.umax=1920x1080
+camera.display.lmax=1280x720
+persist.camera.stats.test=5
 persist.camera.vdbea.switch=1
+media.camera.ts.monotonic=1
 
 # CNE
 persist.cne.feature=1
-
-# Display
-dalvik.vm.heapsize=36m
-debug.egl.hw=0
-debug.enable.sglscale=1
-debug.gralloc.enable_fb_ubwc=1
-debug.mdpcomp.logs=0
-debug.sf.hw=0
-dev.pm.dyn_samplingrate=1
-persist.demo.hdmirotationlock=false
-persist.hwc.mdpcomp.enable=true
-ro.opengles.version=196609
-ro.sf.lcd_density=480
-
-# Fingerprint
-persist.qfp=false
-
-# Fm
-ro.fm.transmitter=false
-
-# FRP
-ro.frp.pst=/dev/block/bootdevice/by-name/config
-
-# GPS
-persist.gps.qc_nlp_in_use=1
-persist.loc.nlp_name=com.qualcomm.location
-ro.gps.agps_provider=1
-
-# Media
-av.debug.disable.pers.cache=1
-media.aac_51_output_enabled=true
-media.msm8956hw=0
-mm.enable.qcom_parser=196495
-mm.enable.smoothstreaming=true
-mmp.enable.3g2=true
-persist.mm.sta.enable=0
-qcom.hw.aac.encoder=true
+persist.dpm.feature=1
+persist.sys.cnd.iwlan=1
 
 # Netmgrd
-persist.data.mode=concurrent
-persist.data.netmgrd.qos.enable=true
 ro.use_data_netmgrd=true
+persist.data.netmgrd.qos.enable=false
+persist.data.mode=concurrent
 
-# NITZ
+# Media
+media.msm8956hw=0
+mm.enable.smoothstreaming=true
+mmp.enable.3g2=true
+media.aac_51_output_enabled=true
+media.stagefright.audio.sink=280
+av.debug.disable.pers.cache=1
+mm.enable.qcom_parser=1048575
+vidc.enc.disable_bframes=1
+vidc.dec.downscalar_width=1920
+vidc.dec.downscalar_height=1088
+vidc.enc.dcvs.extra-buff-count=2
+vidc.disable.split.mode=1
+vidc.enc.disable.pq=true
+
+# Display
+ro.sf.lcd_density=480
+debug.sf.hw=0
+debug.egl.hw=0
+persist.hwc.mdpcomp.enable=true
+debug.mdpcomp.logs=0
+dev.pm.dyn_samplingrate=1
+persist.demo.hdmirotationlock=false
+debug.enable.sglscale=1
+debug.gralloc.enable_fb_ubwc=1
+persist.hwc.enable_vds=1
+persist.debug.wfd.enable=1
+persist.sys.wfd.zte_resolution=0
+persist.sys.lcd.colortmp=127
+persist.sys.image.enhance=w
+ro.qualcomm.cabl=0
+ro.opengles.version=196610
+
+# Nitz
 persist.rild.nitz_plmn=
 persist.rild.nitz_long_ons_0=
 persist.rild.nitz_long_ons_1=
@@ -112,49 +106,82 @@ persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 
-# Qualcomm
-ro.qualcomm.cabl=0
-
-# Radio
-DEVICE_PROVISIONED=1
-persist.data.iwlan.enable=false
+# IMS
+persist.radio.jbims=1
+persist.radio.RATE_ADAPT_ENABLE=1
+persist.radio.VT_ENABLE=1
+persist.radio.VT_HYBRID_ENABLE=1
+persist.radio.VT_USE_MDM_TIME=0
+service.qti.ims.enabled=1
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
-persist.radio.DROPSETENABLE=1
-persist.radio.apm_sim_not_pwdn=1
-persist.radio.custom_ecc=1
-persist.radio.force_on_dc=true
-persist.radio.ignore_dom_time=5
-persist.radio.mt_sms_ack=20
+persist.dbg.ims_volte_enable=1
+persist.dbg.wfc_avail_ovr=0
+
+# Radio
+telephony.lteOnCdmaDevice=1,1
+rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
 persist.radio.multisim.config=dsds
 persist.radio.rat_on=combine
-persist.radio.sib16_support=1
+persist.radio.flex_map_inactive=true
 ril.subscription.types=NV,RUIM
-rild.libargs=-d /dev/smd0
-rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
-ro.ct.device.model=XMP-2016060
-ro.telephony.call_ring.multiple=false
-ro.telephony.default_network=22,22
-service.qti.ims.enabled=1
-telephony.lteOnCdmaDevice=1,1
+DEVICE_PROVISIONED=1
+ro.telephony.default_network=22,20
+ro.telephony.default_cdma_sub=0
+ro.telephony.default_ca_state=1
 
-# Perf
-ro.vendor.extension_library=libqti-perfd-client.so
-ro.vendor.gt_library=libqti-gt.so
-ro.vendor.at_library=libqti-at.so
-ro.sys.fw.dex2oat_thread_count=4
+persist.radio.apm_sim_not_pwdn=1
+persist.radio.sib16_support=1
+persist.radio.custom_ecc=1
+persist.sys.ssr.restart_level=3
+persist.sys.ap.restart_level=0
+persist.data.iwlan.enable=true
+persist.radio.mt_sms_ack=20
 
-# QMI
-persist.data.qmi.adb_logmask=0
+# Fingerprint
+persist.qfp=false
 
-# Service Restart
-ro.am.reschedule_service=true
+# Fm
+ro.fm.transmitter=false
 
-# Time
+# Frp
+ro.frp.pst=/dev/block/bootdevice/by-name/config
+
+# GPS
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
+ro.gps.agps_provider=1
+
+#Simulate sdcard on /data/media
+persist.fuse_sdcard=true
+
+#selects CoreSight configuration to enable
+persist.debug.coresight.config=stm-events
+
+#system props for time-services
 persist.timed.enable=true
 
-# WIFI
-wifi.interface=wlan0
 
-# Wingtech ID
-ro.build.display.wtid=SW_S88553AA1_V060_M21_MP_XM
+#Trim properties
+ro.sys.fw.use_trim_settings=true
+ro.sys.fw.empty_app_percent=50
+ro.sys.fw.trim_empty_percent=100
+ro.sys.fw.trim_cache_percent=100
+ro.sys.fw.trim_enable_memory=2147483648
+
+# Perf
+ro.vendor.gt_library=libqti-gt.so
+ro.vendor.at_library=libqti-at.so
+ro.vendor.extension_library=libqti-perfd-client.so
+ro.am.reschedule_service=true
+ro.sys.fw.dex2oat_thread_count=4
+ro.sys.fw.bg_apps_limit=4
+ro.thermal.product=1
+persist.product.perf=1
+ro.core_ctl_min_cpu=2
+ro.core_ctl_max_cpu=4
+
+# system property to accelerate Progressive Download using STA
+persist.mm.sta.enable=0
+

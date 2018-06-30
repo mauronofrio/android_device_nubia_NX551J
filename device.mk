@@ -32,20 +32,21 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
+# Device was launched with M
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.product.first_api_level=23
 
-# These are the hardware-specific features
+# Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.full.xml:system/etc/permissions/android.hardware.camera.full.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:system/etc/permissions/android.hardware.camera.raw.xml \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
@@ -59,16 +60,21 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml \
+    frameworks/native/data/etc/android.software.print.xml:system/etc/permissions/android.software.print.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
-# ANT
+# ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
     com.dsi.ant.antradio_library \
     libantradio
+
+PRODUCT_COPY_FILES += \
+    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -78,14 +84,19 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
+    libaudioroute \
+    libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    libqcompostprocbundle \
+    libvolumelistener \
+    libtinycompress \
     tinymix
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
+    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    $(LOCAL_PATH)/audio/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
     $(LOCAL_PATH)/audio/audio_platform_info_extcodec.xml:system/etc/audio_platform_info_extcodec.xml \
     $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
@@ -106,19 +117,19 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths_wcd9335.xml:system/etc/sound_trigger_mixer_paths_wcd9335.xml \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
-    $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
+    $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
+
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.secure=0 \
+    ro.adb.secure=0
 
 # Camera
 PRODUCT_PACKAGES += \
     Snap
-	
-PRODUCT_PACKAGES += \
-    s5j318_chromatix.xml \
-    imx258_chromatix.xml \
-    msm8953_camera.xml
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.HAL3.enabled=1
+# Doze mode
+PRODUCT_PACKAGES += \
+    NubiaDoze
 
 # Display
 PRODUCT_PACKAGES += \
@@ -126,7 +137,13 @@ PRODUCT_PACKAGES += \
     copybit.msm8953 \
     hwcomposer.msm8953 \
     memtrack.msm8953 \
+    liboverlay \
     libtinyxml
+
+#Lib Shims
+PRODUCT_PACKAGES += \
+    libshims_ims \
+    libc_shim
 
 # DPM
 PRODUCT_BOOT_JARS += \
@@ -134,73 +151,64 @@ PRODUCT_BOOT_JARS += \
     dpmapi
 
 # Ebtables
-#PRODUCT_PACKAGES += \
-#    ebtables \
-#    ethertypes \
-#    libebtc
-
-# Fingerprint
 PRODUCT_PACKAGES += \
-    fingerprint.default \
-    fingerprintd
+    ebtables \
+    ethertypes \
+    libebtc
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
     fs_config_files
 
-# FPGesture
-#PRODUCT_PACKAGES += \
-#    FPGesture
-
-# KeyHandler
+# FM
 PRODUCT_PACKAGES += \
-    com.cyanogenmod.keyhandler
-
-# Gello
-#PRODUCT_PACKAGES += \
-#    Gello
+    FMRadio \
+    libfmjni
 
 # GPS
 PRODUCT_PACKAGES += \
-    flp.conf \
-    gps.conf \
-    izat.conf \
-    lowi.conf \
-    sap.conf \
-	xtwifi.conf \
-    gps.msm8953
+    gps.msm8953 \
+    libcurl \
+    libgnsspps
 
 PRODUCT_BOOT_JARS += \
     com.qti.location.sdk
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/gps/lowi.conf:system/etc/lowi.conf \
+    $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
 
 # IPA Manager
 PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml
-	
+
 # IRQ
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
-	
+
 # IPC Router
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
 
 # Keylayout
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/keylayout/ft5x06_ts.kl:system/usr/keylayout/ft5x06_ts.kl \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-    $(LOCAL_PATH)/keylayout/gf5216.kl:system/usr/keylayout/gf5216.kl \
-    $(LOCAL_PATH)/keylayout/synaptics_dsx.kl:system/usr/keylayout/synaptics_dsx.kl \
-    $(LOCAL_PATH)/keylayout/synaptics_dsxv26.kl:system/usr/keylayout/synaptics_dsxv26.kl \
-    $(LOCAL_PATH)/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl \
-    $(LOCAL_PATH)/keylayout/uinput-fpc.kl:system/usr/keylayout/uinput-fpc.kl
+    $(LOCAL_PATH)/keylayout/msm8953-snd-card-mtp_Button_Jack.kl:system/usr/keylayout/msm8953-snd-card-mtp_Button_Jack.kl \
+    $(LOCAL_PATH)/keylayout/nubia_synaptics_dsx.kl:system/usr/keylayout/nubia_synaptics_dsx.kl
 
 # Lights
 PRODUCT_PACKAGES += \
     lights.msm8953
 
-# Livedisplay
+# Camera
+PRODUCT_PACKAGES += \
+    NubiaCamera
+
+# LiveDisplay native
 PRODUCT_PACKAGES += \
     libjni_livedisplay
 
@@ -218,13 +226,27 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
+# ConfigPanel
+PRODUCT_PACKAGES += \
+    ConfigPanel \
+    wx_soter
+
+# fingerprint pay
+PRODUCT_BOOT_JARS += \
+    wx_soter \
+    ifaa_fingerprint
+
+$(call add-product-dex-preopt-module-config,wx_soter,disable)
+
 # OMX
 PRODUCT_PACKAGES += \
+    libmm-omxcore \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
+    libOmxSwVencHevc \
     libOmxVdec \
     libOmxVenc \
     libOmxVidcCommon \
@@ -245,47 +267,46 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.class_main.sh \
-    init.qcom.early_boot.sh \
-    init.mdm.sh \
-    init.nubia.sh \
-    init.nubia.extend.usb.rc \
-    init.nubia.usb.rc \
-    init.qcom.class_core.sh \
+    init.qcom.bt.sh \
     init.qcom.power.rc \
     init.qcom.rc \
-    init.qcom.sensors.sh \
     init.qcom.sh \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
+    init.qcom.sensors.sh \
     init.target.rc \
-    ueventd.qcom.rc 
+    ueventd.qcom.rc
 
 PRODUCT_PACKAGES += \
-    init.qcom.bt.sh
+    init.qcom.early_boot.sh
+
+PRODUCT_PACKAGES += \
+    init.msm.usb.configfs.rc \
+    init.nubia.sh \
+    init.nubia.usb.rc \
+    init.nubia.extend.usb.rc
+
+# boot script
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
 
 # RIL
 PRODUCT_PACKAGES += \
     libcnefeatureconfig \
     librmnetctl \
-    libxml2 \
-    libprotobuf-cpp-full
-	
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.extension_library=libqti-perfd-client.so
+    libxml2
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.radio.apm_sim_not_pwdn=1 \
-    persist.radio.sib16_support=1 \
-    ro.telephony.ril.config=simactivation
-
-# Sensor
+# Sensors
 PRODUCT_PACKAGES += \
     sensors.msm8953
+
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf \
     $(LOCAL_PATH)/configs/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/etc/telephony/config.xml:system/etc/telephony/config.xml
 
 # Thermal
 PRODUCT_COPY_FILES += \
@@ -293,9 +314,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/tp/thermal-mode-00-01.conf:system/etc/.tp/.thermal-mode-00-01.conf \
     $(LOCAL_PATH)/configs/tp/thermal-mode-00-02.conf:system/etc/.tp/.thermal-mode-00-02.conf \
     $(LOCAL_PATH)/configs/tp/thermal-mode-01-01.conf:system/etc/.tp/.thermal-mode-01-01.conf \
-    $(LOCAL_PATH)/configs/tp/thermal-mode-01-02.conf:system/etc/.tp/.thermal-mode-01-02.conf \
-    $(LOCAL_PATH)/configs/tp/thermal-mode-02-01.conf:system/etc/.tp/.thermal-mode-02-01.conf \
-    $(LOCAL_PATH)/configs/tp/thermal-mode-02-02.conf:system/etc/.tp/.thermal-mode-02-02.conf \
+    $(LOCAL_PATH)/configs/tp/thermal-mode-01-02.conf:system/etc/.tp/.thermal-mode-01-02.conf
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -314,45 +333,12 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
-    libwifi-hal-qcom \
     libcurl \
     libqsap_sdk \
     libQWiFiSoftApCfg \
     wcnss_service
 
-#Vendor Files
-PRODUCT_PACKAGES += \
-    libtime_genoff \
-    datastatusnotification \
-    embms \
-    fastdormancy \
-    FingerprintServiceExtension \
-    QtiTelephonyService \
-    shutdownlistener \
-    TimeService \
-    CNEService \
-    com.qualcomm.location \
-    dpmserviceapp \
-    ims \
-    qcrilmsgtunnel \
-    QtiTetherService \
-    colorservice \
-    imssettings \
-    cneapiclient \
-    com.qti.dpmframework \
-    com.qti.location.sdk \
-    com.qti.snapdragon.sdk.display \
-    com.quicinc.cne \
-    ConnectivityExt \
-    dpmapi \
-    embmslibrary \
-    ifaa_fingerprint \
-    qcnvitems \
-    qcrilhook \
-    qti-telephony-common \
-    QtiTelephonyServicelibrary \
-    soter_fingerprint \
-    tcmclient
-
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat
+    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
+    $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
+
