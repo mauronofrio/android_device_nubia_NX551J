@@ -204,8 +204,7 @@ case "$target" in
                        "Surf")
                             case "$platform_subtype_id" in
                                  "1")
-# disable on screen keys for nubia (has hardware keys)
-# setprop qemu.hw.mainkeys 0
+                                      setprop qemu.hw.mainkeys 0
                                       ;;
                             esac
                             ;;
