@@ -364,11 +364,6 @@ on boot
     chown system system /sys/kernel/lcd_enhance/saturation
     #nubia, tp&lcd node end
 
-	
-	# touchscreen
-	/sys/class/input/input1/     wake_gesture     0644    system  system
-	/sys/class/input/input1/     0dbutton         0644    system  system
-
 	#ZTEMT:guoqifan add for af infinity calibration -----begin
 	mkdir /persist/camera 0755 system system
     chown system system /persist/camera
