@@ -117,8 +117,8 @@ PRODUCT_PACKAGES += \
     imx258_chromatix.xml \
     msm8953_camera.xml
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.HAL3.enabled=1
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    persist.camera.HAL3.enabled=1
 
 # Display
 PRODUCT_PACKAGES += \
