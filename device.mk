@@ -110,7 +110,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap
+    OpenCamera
 	
 PRODUCT_PACKAGES += \
     s5j318_chromatix.xml \
