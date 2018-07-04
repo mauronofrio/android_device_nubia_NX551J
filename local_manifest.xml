@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="mauronofrio/android_device_nubia_NX551J" path="device/nubia/nx551j" remote="github" revision="master" />
+  <project name="mauronofrio/android_vendor_nubia_NX551J" path="vendor/nubia" remote="github" revision="master" />
+  <project name="mauronofrio/NX551J_M_kernel" path="kernel/nubia/nx551j" remote="github" revision="master" />
+</manifest>
