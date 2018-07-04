@@ -18,7 +18,7 @@
 set -e
 
 # Required!
-DEVICE=NX551J
+DEVICE=nx551j
 VENDOR=nubia
 
 # Load extractutils and do some sanity checks

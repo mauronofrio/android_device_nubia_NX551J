@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/nubia/NX551J
+LOCAL_PATH := device/nubia/nx551j
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
@@ -51,7 +51,7 @@ KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
 KERNEL_CFLAGS := KCFLAGS=-mno-android
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/nubia/NX551J
+TARGET_KERNEL_SOURCE := kernel/nubia/nx551j
 
 BOARD_KERNEL_BASE        := 0x00008000
 BOARD_KERNEL_PAGESIZE    := 2048
@@ -161,9 +161,9 @@ USE_DEVICE_SPECIFIC_GPS := true
 TARGET_NO_RPC := true
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_NX551J
+TARGET_INIT_VENDOR_LIB := libinit_nx551j
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
-TARGET_RECOVERY_DEVICE_MODULES := libinit_NX551J
+TARGET_RECOVERY_DEVICE_MODULES := libinit_nx551j
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
@@ -225,4 +225,4 @@ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/pronto/pronto_wlan.ko"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
--include vendor/nubia/NX551J/BoardConfigVendor.mk
+-include vendor/nubia/nx551j/BoardConfigVendor.mk

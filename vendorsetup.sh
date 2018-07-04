@@ -14,6 +14,6 @@
 # limitations under the License.
 #
 
-add_lunch_combo lineage_NX551J-eng
-add_lunch_combo lineage_NX551J-userdebug
-add_lunch_combo lineage_NX551J-user
+add_lunch_combo lineage_nx551j-eng
+add_lunch_combo lineage_nx551j-userdebug
+add_lunch_combo lineage_nx551j-user

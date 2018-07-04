@@ -14,12 +14,12 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/nubia/NX551J/full_NX551J.mk)
+$(call inherit-product, device/nubia/nx551j/full_nx551j.mk)
 
 # Inherit some common LineageOS stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_NX551J
+PRODUCT_NAME := lineage_nx551j
 BOARD_VENDOR := nubia
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
